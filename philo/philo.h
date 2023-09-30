@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:31:36 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 20:17:19 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:26:18 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				create_threads(t_data *data, pthread_t *t, int philo_num);
 void				join_threads(pthread_t *t, int philo_num);
 void				destory_mutexes(t_data *data, int philo_num);
 void				free_all(t_data *data, pthread_t *t);
+void				wait_for_start(long starttime);
 //=routine.c===================================================================
 void				*routine(void *void_data);
 int					philo_eat(t_data *data);
@@ -116,5 +117,5 @@ int					ft_check(const char *str);
 int					philo_ft_atoi(const char *str);
 long				get_starttime(void);
 long				get_runtime(long starttime);
-void				wait_for_start(long starttime);
+
 #endif

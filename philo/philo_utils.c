@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:04:40 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 20:24:34 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:55:05 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,15 @@ void	free_all(t_data *data, pthread_t *t)
 	free((void *)data->share_data);
 	free((void *)data);
 	free((void *)t);
+}
+
+void	wait_for_start(long starttime)
+{
+	while (1)
+	{
+		if (get_runtime(starttime) >= 0)
+			return ;
+		else
+			usleep(-get_runtime(starttime) / 2);
+	}
 }

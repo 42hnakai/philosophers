@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:16:07 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 20:04:35 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:58:03 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	*routine(void *void_data)
 	data = (t_data *)void_data;
 	wait_for_start(data->share_data->starttime);
 	if ((data->id + 1) % 2 != 0)
-		usleep(100);
+		usleep(200);
 	while (1)
 	{
 		if (take_left_fork(data) == FAIL)

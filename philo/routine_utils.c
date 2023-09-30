@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 05:00:02 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 19:40:31 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 22:03:44 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	take_left_fork(t_data *data)
 {
 	pthread_mutex_lock(&data->share_data->fork_status[data->id]);
-	if (put_philo_act(data, TAKING_FORK) == FAIL)
+	if (put_philo_act(data, TAKING_FORK) == FAIL
+		|| data->share_data->philo_data.num == 0)
 	{
 		pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
 		return (FAIL);
@@ -66,14 +67,16 @@ int	put_philo_act(t_data *data, char *philo_act)
 {
 	if (check_dead_flag(data) == DEAD)
 		return (FAIL);
+	pthread_mutex_lock(&data->share_data->share_mutex);
 	printf("%ld %d %s\n", get_runtime(data->share_data->starttime), data->id
 		+ 1, philo_act);
+	pthread_mutex_unlock(&data->share_data->share_mutex);
 	return (SUCCESS);
 }
 
 void	my_msleep(long ms)
 {
-	long starttime;
+	long	starttime;
 
 	starttime = get_starttime();
 	while (1)

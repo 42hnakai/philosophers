@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:35:14 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 18:43:25 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:26:55 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_invalid_philo_num(char *argv)
 {
-	if (philo_ft_atoi(argv) <= 1)
+	if (philo_ft_atoi(argv) < 1)
 		return (true);
 	else
 		return (false);

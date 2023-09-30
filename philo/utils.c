@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:04:57 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 20:17:36 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:25:26 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,6 @@ long	get_starttime(void)
 	gettimeofday(&time, NULL);
 	starttime = time.tv_sec * 1000 + (long)time.tv_usec / 1000;
 	return (starttime);
-}
-
-void	wait_for_start(long starttime)
-{
-	while (1)
-	{
-		if (get_runtime(starttime) == 0)
-			return ;
-		else
-			usleep(-get_runtime(starttime) / 2);
-	}
 }
 
 long	get_runtime(long starttime)
