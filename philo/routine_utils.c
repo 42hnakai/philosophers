@@ -6,47 +6,42 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 05:00:02 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 17:02:51 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:40:31 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	take_forks(t_data *data)
+int	take_left_fork(t_data *data)
+{
+	pthread_mutex_lock(&data->share_data->fork_status[data->id]);
+	if (put_philo_act(data, TAKING_FORK) == FAIL)
+	{
+		pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+
+int	take_right_fork(t_data *data)
 {
 	if (data->id + 1 == data->share_data->philo_data.num)
 	{
-		// printf("%d id : %d\n", __LINE__, data->id);
-		pthread_mutex_lock(&data->share_data->fork_status[data->id]);
 		pthread_mutex_lock(&data->share_data->fork_status[0]);
 		if (put_philo_act(data, TAKING_FORK) == FAIL)
 		{
-			pthread_mutex_unlock(&data->share_data->fork_status[0]);
 			pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
-			return (FAIL);
-		}
-		if (put_philo_act(data, TAKING_FORK) == FAIL)
-		{
 			pthread_mutex_unlock(&data->share_data->fork_status[0]);
-			pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
 			return (FAIL);
 		}
 	}
 	else
 	{
-		// printf("%d id : %d\n", __LINE__, data->id);
-		pthread_mutex_lock(&data->share_data->fork_status[data->id]);
 		pthread_mutex_lock(&data->share_data->fork_status[data->id + 1]);
 		if (put_philo_act(data, TAKING_FORK) == FAIL)
 		{
-			pthread_mutex_unlock(&data->share_data->fork_status[data->id + 1]);
 			pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
-			return (FAIL);
-		}
-		if (put_philo_act(data, TAKING_FORK) == FAIL)
-		{
 			pthread_mutex_unlock(&data->share_data->fork_status[data->id + 1]);
-			pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
 			return (FAIL);
 		}
 	}

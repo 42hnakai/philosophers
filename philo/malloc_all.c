@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:07:50 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 16:15:20 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 18:43:48 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_share_data	*malloc_share_data(int philo_num)
 
 pthread_mutex_t	*malloc_fork_status(int philo_num)
 {
-	pthread_mutex_t *fork_status;
+	pthread_mutex_t	*fork_status;
+
 	fork_status = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* philo_num);
 	if (fork_status == NULL)

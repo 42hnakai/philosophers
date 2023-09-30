@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:04:57 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 15:46:52 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:17:36 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_isdigit(int c)
 	return ('0' <= c && c <= '9');
 }
 
-static int	ft_check(const char *str)
+int	ft_check(const char *str)
 {
 	size_t	i;
 
@@ -69,8 +69,8 @@ int	philo_ft_atoi(const char *str)
 
 long	get_starttime(void)
 {
-	struct timeval time;
-	long starttime;
+	struct timeval	time;
+	long			starttime;
 
 	gettimeofday(&time, NULL);
 	starttime = time.tv_sec * 1000 + (long)time.tv_usec / 1000;
@@ -98,4 +98,3 @@ long	get_runtime(long starttime)
 		- starttime;
 	return (runtime);
 }
-

@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:04:40 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 16:14:02 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:24:34 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ void	destory_mutexes(t_data *data, int philo_num)
 	}
 }
 
-void	free_all(t_data *data, pthread_t *t, int philo_num)
+void	free_all(t_data *data, pthread_t *t)
 {
+	int	i;
+
+	i = 0;
 	free((void *)data->share_data->fork_status);
 	free((void *)data->share_data);
 	free((void *)data);

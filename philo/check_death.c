@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 03:18:56 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 16:50:52 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:10:56 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	*check_death(void *void_data)
 				change_dead_flag(data);
 				return (NULL);
 			}
+			// pthread_mutex_unlock(&data->share_data->share_mutex);
 			i++;
 		}
 	}
@@ -48,13 +49,13 @@ bool	is_over_eat(t_data *data, int philo_num)
 	i = 0;
 	while (i < philo_num)
 	{
-		pthread_mutex_lock(&data->philo_mutex);
+		pthread_mutex_lock(&data[i].philo_mutex);
 		if (data[i].atecount < data->share_data->philo_data.eatcount)
 		{
-			pthread_mutex_unlock(&data->philo_mutex);
+			pthread_mutex_unlock(&data[i].philo_mutex);
 			return (false);
 		}
-		pthread_mutex_unlock(&data->philo_mutex);
+		pthread_mutex_unlock(&data[i].philo_mutex);
 		i++;
 	}
 	return (true);

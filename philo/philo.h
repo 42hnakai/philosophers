@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:31:36 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 16:37:41 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:17:19 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_share_data
 typedef struct s_data
 {
 	pthread_mutex_t	philo_mutex;
-	unsigned int	id;
+	int				id;
 	int				atecount;
 	long			last_eattime;
 	t_share_data	*share_data;
@@ -92,14 +92,15 @@ void				set_share_data(t_share_data *share_data, char *argv[],
 void				create_threads(t_data *data, pthread_t *t, int philo_num);
 void				join_threads(pthread_t *t, int philo_num);
 void				destory_mutexes(t_data *data, int philo_num);
-void				free_all(t_data *data, pthread_t *t, int philo_num);
+void				free_all(t_data *data, pthread_t *t);
 //=routine.c===================================================================
 void				*routine(void *void_data);
 int					philo_eat(t_data *data);
 int					philo_sleep(t_data *data);
 int					philo_think(t_data *data);
 //=routine_utils.c==============================================================
-int					take_forks(t_data *data);
+int					take_left_fork(t_data *data);
+int					take_right_fork(t_data *data);
 void				after_eat(t_data *data);
 int					put_philo_act(t_data *data, char *philo_act);
 void				my_msleep(long ms);
@@ -111,7 +112,7 @@ int					check_dead_flag(t_data *data);
 void				change_dead_flag(t_data *data);
 //=utils.c=====================================================================
 int					ft_isdigit(int c);
-static int			ft_check(const char *str);
+int					ft_check(const char *str);
 int					philo_ft_atoi(const char *str);
 long				get_starttime(void);
 long				get_runtime(long starttime);

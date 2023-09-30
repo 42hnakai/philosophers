@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:16:07 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 17:37:41 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:04:35 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,23 @@ int	philo_think(t_data *data)
 
 void	*routine(void *void_data)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)void_data;
 	wait_for_start(data->share_data->starttime);
-	printf("%d id : %d\n", __LINE__, data->id);
-	if (data->id % 2 != 0)
-		usleep(200);
-	printf("              %d id : %d\n", __LINE__, data->id);
+	if ((data->id + 1) % 2 != 0)
+		usleep(100);
 	while (1)
 	{
-		if (take_forks(data) == FAIL)
+		if (take_left_fork(data) == FAIL)
+			return (NULL);
+		else if (take_right_fork(data) == FAIL)
 			return (NULL);
 		else if (philo_eat(data) == FAIL)
+		{
+			after_eat(data);
 			return (NULL);
+		}
 		after_eat(data);
 		if (philo_sleep(data) == FAIL)
 			return (NULL);

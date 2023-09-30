@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:18:12 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 15:18:37 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 18:42:43 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	set_share_data(t_share_data *share_data, char *argv[], int philo_num)
 
 void	get_set_all(t_data *data, char *argv[], int philo_num)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	pthread_mutex_init(&data->philo_mutex, NULL);
 	while (i < philo_num)
 	{
+		pthread_mutex_init(&data[i].philo_mutex, NULL);
 		data[i].id = i;
 		data[i].atecount = 0;
 		data[i].last_eattime = 0;
