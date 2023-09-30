@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 05:00:02 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 22:03:44 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 22:06:55 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	take_left_fork(t_data *data)
 {
 	pthread_mutex_lock(&data->share_data->fork_status[data->id]);
 	if (put_philo_act(data, TAKING_FORK) == FAIL
-		|| data->share_data->philo_data.num == 0)
+		|| data->share_data->philo_data.num == 1)
 	{
 		pthread_mutex_unlock(&data->share_data->fork_status[data->id]);
 		return (FAIL);
