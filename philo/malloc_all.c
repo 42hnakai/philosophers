@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:07:50 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 04:03:48 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 16:15:20 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	malloc_all(t_data **data, pthread_t **t, int philo_num)
 	malloc_t(t, philo_num);
 }
 
-t_data	*malloc_info(int philo_num)
+t_data	*malloc_data(int philo_num)
 {
 	t_data	*data;
 

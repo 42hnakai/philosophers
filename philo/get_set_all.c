@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_set_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:18:12 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 04:34:29 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/09/30 15:18:37 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_share_data(t_share_data *share_data, char *argv[], int philo_num)
 	pthread_mutex_init(&share_data->share_mutex, NULL);
 	share_data->dead_flag = ALIVE;
 	share_data->starttime = get_starttime() + 1000;
-	get_philo_data(share_data->philo_data, argv);
+	get_philo_data(&share_data->philo_data, argv);
 	while (i < philo_num)
 	{
 		pthread_mutex_init(&share_data->fork_status[i], NULL);
