@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 01:04:57 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 21:25:26 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/01 18:30:31 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,20 @@ int	philo_ft_atoi(const char *str)
 	return ((int)num);
 }
 
-long	get_starttime(void)
+int	philo_ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	struct timeval	time;
-	long			starttime;
+	size_t				i;
+	const unsigned char	*us1;
+	const unsigned char	*us2;
 
-	gettimeofday(&time, NULL);
-	starttime = time.tv_sec * 1000 + (long)time.tv_usec / 1000;
-	return (starttime);
-}
-
-long	get_runtime(long starttime)
-{
-	struct timeval	nowtime;
-	long			runtime;
-
-	gettimeofday(&nowtime, NULL);
-	runtime = (nowtime.tv_sec * 1000 + (long)nowtime.tv_usec / 1000)
-		- starttime;
-	return (runtime);
+	i = 0;
+	us1 = (const unsigned char *)s1;
+	us2 = (const unsigned char *)s2;
+	while (i < n && (us1[i] != '\0' || us2[i] != '\0'))
+	{
+		if (us1[i] != us2[i])
+			return (us1[i] - us2[i]);
+		i++;
+	}
+	return (0);
 }

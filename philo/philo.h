@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:31:36 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 21:26:18 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/01 20:14:08 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,17 @@ void				get_set_all(t_data *data, char *argv[], int philo_num);
 void				get_philo_data(t_philo_data *philo_data, char *argv[]);
 void				set_share_data(t_share_data *share_data, char *argv[],
 						int philo_num);
+//=get_time.c==================================================================
+long				get_starttime_us(void);
+long				get_nowtime_us(void);
+void				my_usleep(long us);
+long				get_runtime(long starttime_us);
+void				wait_for_start(long starttime);
 //=philo_utils.c===============================================================
 void				create_threads(t_data *data, pthread_t *t, int philo_num);
 void				join_threads(pthread_t *t, int philo_num);
 void				destory_mutexes(t_data *data, int philo_num);
 void				free_all(t_data *data, pthread_t *t);
-void				wait_for_start(long starttime);
 //=routine.c===================================================================
 void				*routine(void *void_data);
 int					philo_eat(t_data *data);
@@ -115,7 +120,5 @@ void				change_dead_flag(t_data *data);
 int					ft_isdigit(int c);
 int					ft_check(const char *str);
 int					philo_ft_atoi(const char *str);
-long				get_starttime(void);
-long				get_runtime(long starttime);
-
+int					philo_ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif

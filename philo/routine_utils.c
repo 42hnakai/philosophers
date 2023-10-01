@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 05:00:02 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 22:06:55 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/01 18:26:22 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ void	after_eat(t_data *data)
 
 int	put_philo_act(t_data *data, char *philo_act)
 {
+	if (philo_ft_strncmp(DIED, philo_act, 4) == 0)
+	{
+		pthread_mutex_lock(&data->share_data->share_mutex);
+		printf("%ld %d %s\n", get_runtime(data->share_data->starttime), data->id
+			+ 1, philo_act);
+		pthread_mutex_unlock(&data->share_data->share_mutex);
+		return (SUCCESS);
+	}
 	if (check_dead_flag(data) == DEAD)
 		return (FAIL);
 	pthread_mutex_lock(&data->share_data->share_mutex);
@@ -72,16 +80,4 @@ int	put_philo_act(t_data *data, char *philo_act)
 		+ 1, philo_act);
 	pthread_mutex_unlock(&data->share_data->share_mutex);
 	return (SUCCESS);
-}
-
-void	my_msleep(long ms)
-{
-	long	starttime;
-
-	starttime = get_starttime();
-	while (1)
-	{
-		if (get_runtime(starttime) >= ms)
-			return ;
-	}
 }

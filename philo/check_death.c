@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 03:18:56 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 21:49:24 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/01 18:27:04 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	*check_death(void *void_data)
 			if (is_over_dietime(&data[i]) == true)
 			{
 				change_dead_flag(data);
-				printf("%ld %d %s\n", get_runtime(data->share_data->starttime),
-					data->id + 1, DIED);
+				put_philo_act(&data[i], DIED);
 				return (NULL);
 			}
 			else if (is_over_eat(data,

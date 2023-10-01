@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:29:58 by hnakai            #+#    #+#             */
-/*   Updated: 2023/09/30 20:19:03 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/02 00:48:08 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,3 @@ int	main(int argc, char *argv[])
 	free_all(data, t);
 	return (0);
 }
-
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q philo");
-// }
