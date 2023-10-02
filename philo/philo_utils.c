@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:04:40 by hnakai            #+#    #+#             */
-/*   Updated: 2023/10/02 00:48:51 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/02 16:39:57 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ void	destory_mutexes(t_data *data, int philo_num)
 	i = 0;
 	while (i < philo_num)
 	{
-		pthread_mutex_destroy(&data[i].philo_mutex);
+		if (pthread_mutex_destroy(&data[i].philo_mutex) != 0)
+			exit(1);
 		i++;
 	}
-	pthread_mutex_destroy(&data->share_data->share_mutex);
+	if (pthread_mutex_destroy(&data->share_data->share_mutex) != 0)
+		exit(1);
 	i = 0;
 	while (i < philo_num)
 	{
-		pthread_mutex_destroy(&data->share_data->fork_status[i]);
+		if (pthread_mutex_destroy(&data->share_data->fork_status[i]) != 0)
+			exit(1);
 		i++;
 	}
 }
