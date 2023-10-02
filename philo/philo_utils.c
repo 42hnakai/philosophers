@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 04:04:40 by hnakai            #+#    #+#             */
-/*   Updated: 2023/10/02 16:39:57 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/02 16:51:30 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ void	join_threads(pthread_t *t, int philo_num)
 	int	i;
 
 	i = 0;
-	pthread_join(t[philo_num], NULL);
+	if (pthread_join(t[philo_num], NULL) != 0)
+		exit(1);
 	while (i < philo_num)
 	{
-		pthread_join(t[i], NULL);
+		if (pthread_join(t[i], NULL) != 0)
+			exit(1);
 		i++;
 	}
 }
