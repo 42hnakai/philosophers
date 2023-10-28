@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 03:18:56 by hnakai            #+#    #+#             */
-/*   Updated: 2023/10/01 18:27:04 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/28 19:59:12 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ bool	is_over_eat(t_data *data, int philo_num)
 
 int	check_dead_flag(t_data *data)
 {
-	pthread_mutex_lock(&data->share_data->share_mutex);
+	// pthread_mutex_lock(&data->share_data->share_mutex);
 	if (data->share_data->dead_flag == DEAD)
 	{
-		pthread_mutex_unlock(&data->share_data->share_mutex);
+		// pthread_mutex_unlock(&data->share_data->share_mutex);
 		return (DEAD);
 	}
 	else
 	{
-		pthread_mutex_unlock(&data->share_data->share_mutex);
+		// pthread_mutex_unlock(&data->share_data->share_mutex);
 		return (ALIVE);
 	}
 }

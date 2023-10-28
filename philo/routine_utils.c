@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 05:00:02 by hnakai            #+#    #+#             */
-/*   Updated: 2023/10/01 18:26:22 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/10/28 19:59:43 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ int	put_philo_act(t_data *data, char *philo_act)
 		pthread_mutex_unlock(&data->share_data->share_mutex);
 		return (SUCCESS);
 	}
-	if (check_dead_flag(data) == DEAD)
-		return (FAIL);
 	pthread_mutex_lock(&data->share_data->share_mutex);
+	if (check_dead_flag(data) == DEAD)
+	{
+		pthread_mutex_unlock(&data->share_data->share_mutex);
+		return (FAIL);
+	}
 	printf("%ld %d %s\n", get_runtime(data->share_data->starttime), data->id
 		+ 1, philo_act);
 	pthread_mutex_unlock(&data->share_data->share_mutex);
